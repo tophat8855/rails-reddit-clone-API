@@ -9,7 +9,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(note_params)
+    @post = Post.new(post_params)
     if @post.save
       render json: @post
     end
@@ -39,7 +39,7 @@ class PostsController < ApplicationController
   end
 
   private
-  def note_params
+  def post_params
     params.require(:post).permit(:title, :username, :description, :link)
   end
 end
