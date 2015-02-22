@@ -1,5 +1,3 @@
 class Post < ActiveRecord::Base
-  def index
-    @posts = Post.all
-  end
+  has_many :comments
 end

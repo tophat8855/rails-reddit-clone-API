@@ -4,10 +4,6 @@ class PostsController < ApplicationController
     render json: @posts
   end
 
-  def new
-    @post = Post.new
-  end
-
   def create
     @post = Post.new(post_params)
     if @post.save
@@ -17,15 +13,12 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-  end
-
-  def edit
-    @post = Post.find(params[:id])
+    render json: @post
   end
 
   def update
     @post = Post.find(params[:id])
-    @post.update(not_params)
+    @post.update(post_params)
     if @post.save
       render json: @post
     end
@@ -34,7 +27,7 @@ class PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     if @post.destroy
-      render json: @post
+      head :no_content
     end
   end
 

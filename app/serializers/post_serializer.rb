@@ -1,3 +1,4 @@
 class PostSerializer < ActiveModel::Serializer
-  attributes :id, :title, :descsription, :username, :link
+  attributes :id, :title, :description, :username, :link
+  has_many :comments, include: true
 end
