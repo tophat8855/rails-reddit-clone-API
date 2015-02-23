@@ -5,15 +5,22 @@ class CommentsController < ApplicationController
   end
 
   def create
-    comment = Comment.new(comment_params)
+    @comment = Comment.new(comment_params)
     if comment.save
-      render json: comment
+      render json: @comment
+    end
+  end
+
+  def update
+    @comment = Comment.find(params[:id])
+    if @comment.update(comment_params)
+      render json: @comment
     end
   end
 
   def destroy
-    comment = Comment.find(params[:id])
-    if comment.destroy
+    @comment = Comment.find(params[:id])
+    if @comment.destroy
       head :no_content
     end
   end
